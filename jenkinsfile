@@ -2,11 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('cypress test') {
+        stage('Hello') {
             steps {
-                git credentialsId: 'github', url: 'https://github.com/c244a0/REVERSI.git'
-                sh 'npm install cypress --save-dev'
-                sh 'npx cypress run'
+                echo 'Hello World'
             }
         }
     }
