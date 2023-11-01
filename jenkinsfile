@@ -1,15 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        GITHUB_ACCESS_TOKEN = credentials('githubAcountToken')
-    }
 
     stages {
         stage('cypress test') {
             steps {
                 echo 'start'
-                git url: 'https://github.com/c244a0/REVERSI.git', credentialsId: GITHUB_ACCESS_TOKEN
+                git url: 'https://github.com/c244a0/REVERSI.git', credentialsId: githubAcountToken
                 sh 'npm install cypress --save-dev'
                 sh 'npx cypress run'
             }
