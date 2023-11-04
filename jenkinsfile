@@ -6,6 +6,7 @@ pipeline {
         stage('cypress test') {
             steps {
                 echo 'start'
+                sh 'pwd'
                 git branch: 'main',
                     credentialsId: 'githubAcountToken',
                     url: 'https://github.com/c244a0/REVERSI.git'
