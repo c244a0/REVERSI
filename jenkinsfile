@@ -10,7 +10,7 @@ pipeline {
                 git branch: 'main',
                     credentialsId: 'githubAcountToken',
                     url: 'https://github.com/c244a0/REVERSI.git'
-                sh 'npm install cypress --save-dev'
+                sh 'npm install cypress --save-dev --spec /var/jenkins_home/workspace/reversiCypressTestPipeline/cypress/e2e/reverseTest.cy.js'
                 sh 'npx cypress run'
             }
         }
