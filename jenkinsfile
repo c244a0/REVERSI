@@ -5,13 +5,13 @@ pipeline {
     stages {
         stage('cypress test') {
             steps {
+                withCredentials([string(credentialsId: 'REVERSI_URL', variable: 'BASE_URL')])
                 echo 'start'
-                sh 'pwd'
                 git branch: 'main',
                     credentialsId: 'githubAcountToken',
                     url: 'https://github.com/c244a0/REVERSI.git'
                 sh 'npm install cypress --save-dev'
-                sh 'npx cypress run --spec /var/jenkins_home/workspace/reversiCypressTestPipeline/cypress/e2e/reverseTest.cy.js'
+                sh 'npx cypress run --spec /var/jenkins_home/workspace/reversiCypressTestPipeline/cypress/e2e/reverseTest.cy.js --config baseUrl=${BASE_URL}"'
             }
         }
     }
