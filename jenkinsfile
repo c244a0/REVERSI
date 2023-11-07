@@ -7,6 +7,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'REVERSI_URL', variable: 'BASE_URL')])
                 echo 'start'
+                echo 'BASE_URL'
                 git branch: 'main',
                     credentialsId: 'githubAcountToken',
                     url: 'https://github.com/c244a0/REVERSI.git'
