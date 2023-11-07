@@ -1,6 +1,6 @@
 describe('REVERSE', () => {
   beforeEach(() => {
-    cy.visit('http://52.195.45.7:3000');
+    cy.visit('/');
   })
 
   it('コマを置くことができる', () => {
