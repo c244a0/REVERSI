@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        BASIC_ID = 'BASIC_ID',
-        BASE_PASSWORD = 'BASE_PASSWORD'
-    }
-
     stages {
         stage('cypress test') {
             steps {
