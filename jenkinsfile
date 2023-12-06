@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    environment {
+        BASIC_ID = 'BASIC_ID',
+        BASE_PASSWORD = 'BASE_PASSWORD'
+    }
+
+    stages {
+        stage('cypress test') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'REVERSI_URL', variable: 'BASE_URL')]) {
+                        echo "BASE_URL: \${BASE_URL}"
+                        git branch: 'main',
+                            credentialsId: 'githubAcountToken',
+                            url: 'https://github.com/c244a0/REVERSI.git'
+                        sh "npm install cypress --save-dev"
+                        sh "npx cypress run --spec /var/jenkins_home/workspace/reversiCypressTestPipeline/cypress/e2e/reverseTest.cy.js --config baseUrl=\${BASE_URL}"
+                    }
+                }
+            }
+        }
+    }
+}
