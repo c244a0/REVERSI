@@ -5,10 +5,23 @@ import { DomainError } from "./domain/error/DomainError";
 import { gameRouter } from "./presentation/gameRouter";
 import { turnRouter } from "./presentation/turnRouter";
 import { ApplicationError } from "./application/error/applicationError";
+import basicAuth from 'express-basic-auth';
 
 const PORT = 3000;
 
 const app = express();
+
+
+
+// Basic認証の設定
+const users = { 'admin': 'demo' };
+
+app.use(basicAuth({
+    users: users,
+    challenge: true, 
+    realm: 'MyApplication'
+}));
+
 
 app.use(morgan("dev"));
 app.use(express.static("static", { extensions: ["html"] }));
@@ -19,9 +32,7 @@ app.use(turnRouter);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Reversi application started: http://localhost:${PORT}`);
-});
+app.listen(PORT, () => {});
 
 interface ErrorResponseBody {
   type: string;
